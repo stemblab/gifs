@@ -1,6 +1,8 @@
 [
-    "mootools.js",
-    "ready.js",
+    "./js/b64.js",
+    "./js/LZWEncoder.js",
+    "./js/NeuQuant.js",
+    "./js/GIFEncoder.js",
     "main.html",
     "main.css",
     "main.coffee"
