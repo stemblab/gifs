@@ -1,19 +1,46 @@
-canvas = document.getElementById("bitmap")
-context = canvas.getContext("2d")
-my_gradient = context.createLinearGradient(0, 0, 300, 0)
-my_gradient.addColorStop 0, "black"
-my_gradient.addColorStop 1, "white"
-context.fillStyle = my_gradient #"rgb(255,255,255)";
-context.fillRect 0, 0, canvas.width, canvas.height #GIF can't do transparent so do white
+# From: <a href="http://mathgifs.blogspot.com/2013/12/mathematical-envelopes.html">@mathgifs</a> 
+
+# focii (as, bs), directrix y = c,
+as = linspace -0.45, 0.45, 100
+bs = 9*as.pow(2) - 5/8
+c = -6/8
+
+ # $f(x)=\left((x-a)^2+b^2-c^2\right)/(2(b-c))$
+
+f = (x, a, b, c) ->
+    ((x-a).pow(2) + b*b - c*c)/(2*(b-c))
+
+x = linspace -1, 1, 50
+y = (f(x, a, bs[i], c) for a, i in as) #; 
+
+fig = figure
+    height: 400
+    xlabel: "x"
+    ylabel: "y"
+    series: 
+        shadowSize: 0
+        color: "green"
+        lines: lineWidth: 1
+    xaxis:
+        min: -1
+        max: 1
+    yaxis:
+        min: -1
+        max: 1
+        
 encoder = new GIFEncoder()
 encoder.setRepeat 0 #auto-loop
-encoder.setDelay 500
-console.log encoder.start()
-context.fillStyle = "rgb(200,0,0)"
-context.fillRect 10, 10, 75, 50
-console.log encoder.addFrame(context)
-context.fillStyle = "rgb(20,0,200)"
-context.fillRect 30, 30, 55, 50
-console.log encoder.addFrame(context)
+encoder.setDelay 100
+encoder.start()
+
+plot [], [], fig: fig
+ctx = $(".flot-base")[0].getContext('2d')
+
+snapshot = (n) ->
+    plot x, y[0..n], fig: fig
+    encoder.addFrame(ctx)
+
+snapshot(n) for n in [0..10]
+
 encoder.finish()
-document.getElementById("image").src = "data:image/gif;base64," + encode64(encoder.stream().getData())
+$("#image")[0].src = "data:image/gif;base64," + encode64(encoder.stream().getData())
