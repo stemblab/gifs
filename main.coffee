@@ -27,7 +27,9 @@ fig = figure
     yaxis:
         min: -1
         max: 1
-
+    grid:
+        backgroundColor: "white"
+        
 frame = (n) -> plot x, y[0..n], fig: fig
             
 gif = new $blab.BasicGif

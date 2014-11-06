@@ -24,8 +24,8 @@ class $blab.BasicGif
         #@baseCtx.fillStyle = my_gradient #"rgb(255,255,255)";
         #@baseCtx.fillRect(0,0,400,400); #GIF can't do transparent so do white
 
-        #@baseCtx.fillStyle = "red"
-        #@baseCtx.fillRect(0,0,400,400)
+        @baseCtx.fillStyle = "blue"
+        @baseCtx.fillRect(0,0,400,400)
         #@overCtx.fillStyle = "#fff"
         #@overCtx.fillRect(0,0,400,400)
         
