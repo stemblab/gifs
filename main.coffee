@@ -14,9 +14,8 @@ x = linspace -1, 1, 50
 y = (f(x, a, bs[i], c) for a, i in as) #; 
 
 fig = figure
+    canvas: true
     height: 400
-    xlabel: "x"
-    ylabel: "y"
     series: 
         shadowSize: 0
         color: "green"
@@ -31,18 +30,13 @@ fig = figure
         backgroundColor: "white"
         
 frame = (n) -> plot x, y[0..n], fig: fig
-            
-gif = new $blab.BasicGif
+
+spec =
     frame: frame
+    delay: 100
+    N: 7
+            
+new $blab.BasicGif spec
+#new $blab.BasicAni spec
 
-###
-# Animation
-delay = 10  # Snapshot delay (10ms)
-snapshot = (n) ->
-    return if n>y.length-1
-    frame(n) # plot x, y[0..n], fig: fig
-    setTimeout (-> snapshot n+1), delay
 
-setTimeout (-> snapshot 0), 2000 #; 2s delay
-###
-                 
