@@ -5,6 +5,7 @@
     "./js/GIFEncoder.js",
     "main.html",
     "main.css",
+    "gif.coffee",
     "main.coffee"
 ]
 

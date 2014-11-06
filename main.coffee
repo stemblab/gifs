@@ -28,40 +28,19 @@ fig = figure
         min: -1
         max: 1
 
-class BasicGif
-
-    constructor: (@spec) ->
-
-        @spec.baseId ?= ".flot-base"
-        @spec.overId ?= ".flot-overlay" 
-        
-        @encoder = new GIFEncoder()
-        @encoder.setRepeat 0 #auto-loop
-        @encoder.setDelay 100
-        @encoder.start()
-
-        @init()
-        @build()
-
-    init: ->
-
-        plot [], [], fig: @spec.fig
-        @baseCtx = $(@spec.baseId)[0].getContext('2d')
-        @overCtx = $(@spec.overId)[0].getContext('2d')
-        
-    snapshot: (n) ->
-        plot @spec.x, @spec.y[0..n], fig: @spec.fig
-        @encoder.addFrame(@baseCtx)
-
-    build: ->
-        @snapshot(n) for n in [0..2]
-        @encoder.addFrame(@overCtx)
-        @encoder.finish()
-        data = encode64(@encoder.stream().getData())
-        $("#image")[0].src = "data:image/gif;base64," + data 
+frame = (n) -> plot x, y[0..n], fig: fig
             
-gif = new BasicGif
-    fig: fig
-    x: x
-    y: y
+gif = new $blab.BasicGif
+    frame: frame
 
+###
+# Animation
+delay = 10  # Snapshot delay (10ms)
+snapshot = (n) ->
+    return if n>y.length-1
+    frame(n) # plot x, y[0..n], fig: fig
+    setTimeout (-> snapshot n+1), delay
+
+setTimeout (-> snapshot 0), 2000 #; 2s delay
+###
+                 
