@@ -27,20 +27,41 @@ fig = figure
     yaxis:
         min: -1
         max: 1
+
+class BasicGif
+
+    constructor: (@spec) ->
+
+        @spec.baseId ?= ".flot-base"
+        @spec.overId ?= ".flot-overlay" 
         
-encoder = new GIFEncoder()
-encoder.setRepeat 0 #auto-loop
-encoder.setDelay 100
-encoder.start()
+        @encoder = new GIFEncoder()
+        @encoder.setRepeat 0 #auto-loop
+        @encoder.setDelay 100
+        @encoder.start()
 
-plot [], [], fig: fig
-ctx = $(".flot-base")[0].getContext('2d')
+        @init()
+        @build()
 
-snapshot = (n) ->
-    plot x, y[0..n], fig: fig
-    encoder.addFrame(ctx)
+    init: ->
 
-snapshot(n) for n in [0..10]
+        plot [], [], fig: @spec.fig
+        @baseCtx = $(@spec.baseId)[0].getContext('2d')
+        @overCtx = $(@spec.overId)[0].getContext('2d')
+        
+    snapshot: (n) ->
+        plot @spec.x, @spec.y[0..n], fig: @spec.fig
+        @encoder.addFrame(@baseCtx)
 
-encoder.finish()
-$("#image")[0].src = "data:image/gif;base64," + encode64(encoder.stream().getData())
+    build: ->
+        @snapshot(n) for n in [0..2]
+        @encoder.addFrame(@overCtx)
+        @encoder.finish()
+        data = encode64(@encoder.stream().getData())
+        $("#image")[0].src = "data:image/gif;base64," + data 
+            
+gif = new BasicGif
+    fig: fig
+    x: x
+    y: y
+
