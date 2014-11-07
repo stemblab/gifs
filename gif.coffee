@@ -1,16 +1,18 @@
+# Create basic GIF animation.
+
 class $blab.BasicGif
 
     constructor: (@spec) ->
-        @spec.gifId = "#image"
-        @spec.baseId ?= ".flot-base"
-        @spec.repeat ?= 0
-        @spec.delay ?= 100
+        @spec.gifId = "#image" # <img> where GIF appears
+        @spec.baseId ?= ".flot-base" # flot canvas
+        @spec.repeat ?= 0 # 0 means loop
+        @spec.delay ?= 100 # ms
 
         @init()
         @build()
 
     init: ->
-        @spec.frame(0) # create canvas
+        @spec.frame(0) # initiate canvas using first frame
         @baseCanvas = $(@spec.baseId)[0] # element
         @baseCtx = @baseCanvas.getContext('2d') # context
 
