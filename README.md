@@ -1,4 +1,1 @@
-gifs
-====
-
-Animated GIFs.
+![](https://github.com/stemblab/gifs/blob/gh-pages/thumb.png)
