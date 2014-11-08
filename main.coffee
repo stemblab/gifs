@@ -4,7 +4,7 @@
 f = (x, a, b, c) ->
     ((x-a).pow(2) + b*b - c*c)/(2*(b-c))
 
- # where (a, b), directrix y = c (<a href="http://mathgifs.blogspot.com/2013/12/mathematical-envelopes.html">@mathgifs</a>).
+ # where (a, b), directrix y = c (<a href="http://mathgifs.blogspot.co.nz/2013/09/mathgifs-logo.html">@mathgifs</a>).
  
 
  # 2. <a href="http://puzlet.org/sci-comp/utils/">Define a figure</a>
