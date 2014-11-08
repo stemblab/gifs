@@ -1,4 +1,4 @@
- # Compute with ctrl+enter
+ # Compute with shift+enter
  # <a href="gallery"a>Gallery</a>
 
  # 1. <a href="maths">Define a function</a> 
