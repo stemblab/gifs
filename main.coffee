@@ -50,7 +50,7 @@ spec =
     delay: 100
     N: 7
 
- # Uncomment/de-indent to animate. (<a href="imports">$blab?</a>)
+ # Uncomment/de-indent to animate. (<a href="http://puzlet.org/doc/import-export/">$blab?</a>)
  # new $blab.BasicAni spec
 
  # 5. <u>Create GIF</u>
