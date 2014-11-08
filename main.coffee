@@ -1,7 +1,7 @@
  # Compute with shift+enter
  # <a href="gallery"a>Gallery</a>
 
- # 1. <a href="maths">Define a function</a> 
+ # 1. <a href="http://puzlet.org/sci-comp/">Define a function</a> 
  # E.g.: $f(x)=\left((x-a)^2+b^2-c^2\right)/(2(b-c))$
  
 f = (x, a, b, c) ->
@@ -9,7 +9,7 @@ f = (x, a, b, c) ->
 
  # Focus (a, b), directrix y = c (<a href="http://mathgifs.blogspot.com/2013/12/mathematical-envelopes.html">@mathgifs</a>).
 
- # 2. <a href="maths">Define a figure</a>
+ # 2. <a href="http://puzlet.org/sci-comp/utils/">Define a figure</a>
 
 fig = figure
     canvas: true
@@ -31,7 +31,7 @@ fig = figure
 
 
 
- # 3. <a href="plotting">Plot function.</a>
+ # 3. <a href="http://puzlet.org/sci-comp/utils/">Plot function.</a>
 A = linspace -0.45, 0.45, 100 # Array of a.
 B = 9*A.pow(2) - 5/8 # Array if b.
 c = -6/8
