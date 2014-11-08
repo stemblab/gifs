@@ -1,19 +1,17 @@
- # Compute with shift+enter
- # <a href="gallery"a>Gallery</a>
-
  # 1. <a href="http://puzlet.org/sci-comp/">Define a function</a> 
  # E.g.: $f(x)=\left((x-a)^2+b^2-c^2\right)/(2(b-c))$
  
 f = (x, a, b, c) ->
     ((x-a).pow(2) + b*b - c*c)/(2*(b-c))
 
- # Focus (a, b), directrix y = c (<a href="http://mathgifs.blogspot.com/2013/12/mathematical-envelopes.html">@mathgifs</a>).
+ # where (a, b), directrix y = c (<a href="http://mathgifs.blogspot.com/2013/12/mathematical-envelopes.html">@mathgifs</a>).
+ 
 
  # 2. <a href="http://puzlet.org/sci-comp/utils/">Define a figure</a>
 
 fig = figure
     canvas: true
-    height: 400
+    height: 320
     series: 
         shadowSize: 0
         color: "green"
@@ -50,9 +48,10 @@ spec =
     delay: 100
     N: 7
 
- # Uncomment/de-indent to animate. (<a href="http://puzlet.org/doc/import-export/">$blab?</a>)
- # new $blab.BasicAni spec
+ # Uncomment/de-indent to animate. 
+ # new $blab.BasicAni spec # (<a href="http://puzlet.org/doc/import-export/">$blab?</a>)
 
  # 5. <u>Create GIF</u>
 
+# Uncomment/de-indent for GIF. 
  # new $blab.BasicGif spec
