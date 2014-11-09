@@ -30,7 +30,7 @@ class $blab.BasicGif
         @encoder.addFrame(@baseCtx)
 
     build: ->
-        @snapshot(n) for n in [0..3]
+        @snapshot(n) for n in [0..10]
         @encoder.finish()
         data = encode64(@encoder.stream().getData())
         $(@spec.gifId)[0].src = "data:image/gif;base64," + data 
