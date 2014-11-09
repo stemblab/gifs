@@ -49,7 +49,7 @@ spec =
     N: 7
 
  # Uncomment/de-indent to animate. 
- # new $blab.BasicAni spec # (<a href="http://puzlet.org/doc/import-export/">$blab?</a>)
+ # new $blab.BasicAni spec # (<a href="http://puzlet.org/doc/anatomy/">$blab?</a>)
 
  # 5. <u>Create GIF</u>
 
