@@ -25,14 +25,16 @@ class $blab.BasicGif
         @encoder.setSize @width, @height
         @encoder.start()
         
-    snapshot: (n) ->
-        @spec.frame(n)
-        @encoder.addFrame(@baseCtx)
-
     build: ->
-        @snapshot(n) for n in [0..@spec.N-1]
-        #console.log "progress:", n, " of ", @spec.N
+        @snapshot(0)
         @encoder.finish()
         data = encode64(@encoder.stream().getData())
         $(@spec.gifId)[0].src = "data:image/gif;base64," + data 
+
+    snapshot: (n) ->
+        return if n>@spec.N-1
+        @spec.frame(n)
+        @encoder.addFrame(@baseCtx)
+        $("#progressbar").progressbar value: n/(@spec.N-1)*100
+        setTimeout @snapshot n+1, 0
 

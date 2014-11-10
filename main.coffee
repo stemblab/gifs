@@ -53,5 +53,5 @@ spec =
 
  # 5. <u>Create GIF</u>
 
- # Uncomment/de-indent for GIF. Watch console for progress. 
+ # Uncomment/de-indent for GIF.
  # new $blab.BasicGif spec
