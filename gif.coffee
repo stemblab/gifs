@@ -19,6 +19,9 @@ class $blab.BasicGif
         @width = @baseCanvas.width
         @height = @baseCanvas.height
 
+        #@baseCtx.fillStyle = "#00f"
+        #@baseCtx.fillRect(0, 0, @width, @height)
+
         @encoder = new GIFEncoder()
         @encoder.setRepeat @spec.repeat
         @encoder.setDelay @spec.delay
