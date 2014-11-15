@@ -19,9 +19,6 @@ class $blab.BasicGif
         @width = @baseCanvas.width
         @height = @baseCanvas.height
 
-        #@baseCtx.fillStyle = "#00f"
-        #@baseCtx.fillRect(0, 0, @width, @height)
-
         @encoder = new GIFEncoder()
         @encoder.setRepeat @spec.repeat
         @encoder.setDelay @spec.delay
@@ -37,6 +34,13 @@ class $blab.BasicGif
     snapshot: (n) ->
         return if n>@spec.N-1
         @spec.frame(n)
+
+        # http://www.mikechambers.com/blog/2011/01/31...
+        # /setting-the-background-color-when-generating-images-from-canvas-todataurl/
+        @baseCtx.globalCompositeOperation = "destination-over"
+        @baseCtx.fillStyle = "#fff"
+        @baseCtx.fillRect(0,0,@width,@height)
+
         @encoder.addFrame(@baseCtx)
         $("#progressbar").progressbar value: n/(@spec.N-1)*100
         setTimeout @snapshot n+1, 0

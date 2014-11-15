@@ -24,9 +24,6 @@ fig = figure
     yaxis:
         min: -1
         max: 1
-    grid:
-        backgroundColor: "white"
-
 
  # 3. <a href="http://puzlet.org/sci-comp/utils/">Plot function.</a>
 
