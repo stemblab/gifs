@@ -26,12 +26,12 @@ class $blab.BasicGif
         @encoder.start()
         
     build: ->
-        @snapshot(0)
+        @snapshot(0, @encoder)
         @encoder.finish()
         data = encode64(@encoder.stream().getData())
         $(@spec.gifId)[0].src = "data:image/gif;base64," + data 
 
-    snapshot: (n) ->
+    snapshot: (n, encoder) ->
         return if n>@spec.N-1
         @spec.frame(n)
 
@@ -41,7 +41,13 @@ class $blab.BasicGif
         @baseCtx.fillStyle = "#fff"
         @baseCtx.fillRect(0,0,@width,@height)
 
-        @encoder.addFrame(@baseCtx)
-        $("#progressbar").progressbar value: n/(@spec.N-1)*100
-        setTimeout @snapshot n+1, 0
+        setTimeout(=> $("#progressbar").progressbar value: n/(@spec.N-1)*100, 1)
+
+        if @spec.makeGif
+            encoder.addFrame(@baseCtx)
+            setTimeout @snapshot(n+1, encoder), 0
+
+        else
+            setTimeout (=> @snapshot(n+1, encoder)), @spec.delay
+
 

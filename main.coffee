@@ -44,11 +44,11 @@ spec =
     frame: frame
     delay: 100
     N: 7
+    makeGif: false
 
  # Uncomment/de-indent to animate. 
- # new $blab.BasicAni spec # (<a href="http://puzlet.org/doc/anatomy/">$blab?</a>)
+ # new $blab.BasicGif spec # (<a href="http://puzlet.org/doc/anatomy/">$blab?</a>)
 
  # 5. <u>Create GIF</u>
 
- # Uncomment/de-indent for GIF.
- # new $blab.BasicGif spec
+ # Change makeGif to true, then run again.
