@@ -62,4 +62,5 @@ spec =
  # then run again (shift+enter).
 
  # Will take a while to generate.
+ # (Persist if browser complains.)
  # Right click to save.
