@@ -6,7 +6,6 @@
     "https://api.github.com/repos/antimatter15/jsgif/contents/GIFEncoder.js",
     "main.html",
     "main.css",
-    "init.coffee",
     "gif.coffee",
     "main.coffee"
 ]
