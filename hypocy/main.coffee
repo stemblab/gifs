@@ -4,7 +4,7 @@ fy = (t, r, k) -> r*(k-1)*sin(t) - r*sin((k-1)*t)
 
 r = 1
 k = 2.1
-t = linspace 0, 2*pi*10, 10*10 #;
+t = linspace 0, 2*pi*10, 50 #;
 
 x = fx(t, r, k)
 y = fy(t, r, k)
@@ -22,8 +22,6 @@ fig = figure
     yaxis:
         min: -2
         max: 2
-    grid:
-        backgroundColor: "white"
 
 plot x, y, fig: fig
 
@@ -31,8 +29,8 @@ frame = (n) -> plot x, y[0..n], fig: fig
 
 spec =
     frame: frame
-    delay: 100
+    delay: 50
     N: 100
+    makeGif: false
 
-# new $blab.BasicAni spec
 # new $blab.BasicGif spec
