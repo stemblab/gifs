@@ -7,7 +7,6 @@
     "main.html",
     "../main.css",
     "../gif.coffee",
-    "../ani.coffee",
     "main.coffee"
 ]
 
