@@ -33,20 +33,19 @@ class $blab.BasicGif
 
     snapshot: (n, encoder) ->
         return if n>@spec.N-1
-        @spec.frame(n)
+        @spec.frame(n) # draw nth frame
 
+        # white background.
         # http://www.mikechambers.com/blog/2011/01/31...
         # /setting-the-background-color-when-generating-images-from-canvas-todataurl/
         @baseCtx.globalCompositeOperation = "destination-over"
         @baseCtx.fillStyle = "#fff"
         @baseCtx.fillRect(0,0,@width,@height)
 
-        setTimeout(=> $("#progressbar").progressbar value: n/(@spec.N-1)*100, 1)
-
+        # Either make animated GIF, or animate in eval panel.
         if @spec.makeGif
             encoder.addFrame(@baseCtx)
             setTimeout @snapshot(n+1, encoder), 0
-
         else
             setTimeout (=> @snapshot(n+1, encoder)), @spec.delay
 
