@@ -61,5 +61,5 @@ spec =
  # Change makeGif to true in spec above,
  # then run again (shift+enter).
 
- # Will take a few moments to generate.
+ # Will take a while to generate.
  # Right click to save.
