@@ -20,3 +20,7 @@
 #gif {
     border: 1px dashed;
 }
+
+.foot .puzlet-link { float:left }
+.foot .org-link { float:right }
+
