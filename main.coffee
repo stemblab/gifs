@@ -61,6 +61,8 @@ spec =
  # Change makeGif to true in spec above,
  # then run again (shift+enter).
 
- # Will take a while to generate.
- # (Persist if browser complains.)
- # Right click to save.
+ # Will take a while to generate, and block
+ # this tab (to be fixed).
+ # Persist if browser complains.
+ # Right click to save the animated gif,
+ # or the thumb.
