@@ -2,36 +2,57 @@
 
 class $blab.BasicGif
 
+    gifId: "#gif"
+    thumbId: "#thumb"
+    baseId: ".flot-base" # flot canvas
+            
     constructor: (@spec) ->
-        @spec.gifId = "#image" # <img> where GIF appears
-        @spec.baseId ?= ".flot-base" # flot canvas
-        @spec.repeat ?= 0 # 0 means loop
-        @spec.delay ?= 100 # ms
-
-        @init()
-        @build()
-
+        
+        if @spec.makeGif # make animated gif
+            @init()
+            @build()
+        else # animate in eval panel
+            $(@gifId)[0].src = ""
+            $(@thumbId)[0].src = ""
+            @evalAni(0) 
+            
     init: ->
-        @spec.frame(0) # initiate canvas using first frame
-        @baseCanvas = $(@spec.baseId)[0] # element
-        @baseCtx = @baseCanvas.getContext('2d') # context
+        @spec.delay ?= 100 # ms
+        @spec.repeat ?= 0 # 0 means loop
 
+        @baseCanvas = $(@baseId)[0] # element
+        @baseCtx = @baseCanvas.getContext('2d') # context
         @width = @baseCanvas.width
         @height = @baseCanvas.height
 
-        @encoder = new GIFEncoder()
-        @encoder.setRepeat @spec.repeat
-        @encoder.setDelay @spec.delay
-        @encoder.setSize @width, @height
-        @encoder.start()
+        @spec.frame(0) # initiate canvas using first frame
+
+        # animated GIF
+        @gif = new GIFEncoder()
+        @gif.setRepeat @spec.repeat
+        @gif.setDelay @spec.delay
+        @gif.setSize @width, @height
+        @gif.start()
+
+        # thumbnail (last frame)
+        @thumb = new GIFEncoder()
+        @thumb.setRepeat 1
+        @thumb.setDelay 0
+        @thumb.setSize @width, @height
+        @thumb.start()
         
     build: ->
-        @snapshot(0, @encoder)
-        @encoder.finish()
-        data = encode64(@encoder.stream().getData())
-        $(@spec.gifId)[0].src = "data:image/gif;base64," + data 
+        @snapshot(0)
+        @gif.finish()
+        @thumb.finish()
 
-    snapshot: (n, encoder) ->
+        data = encode64(@gif.stream().getData())
+        $(@gifId)[0].src = "data:image/gif;base64," + data 
+
+        data = encode64(@thumb.stream().getData())
+        $(@thumbId)[0].src = "data:image/gif;base64," + data 
+
+    snapshot: (n) ->
         return if n>@spec.N-1
         @spec.frame(n) # draw nth frame
 
@@ -41,12 +62,12 @@ class $blab.BasicGif
         @baseCtx.globalCompositeOperation = "destination-over"
         @baseCtx.fillStyle = "#fff"
         @baseCtx.fillRect(0,0,@width,@height)
+        
+        @thumb.addFrame(@baseCtx) if n is @spec.N-1
+        @gif.addFrame(@baseCtx)
+        setTimeout @snapshot(n+1), 0
 
-        # Either make animated GIF, or animate in eval panel.
-        if @spec.makeGif
-            encoder.addFrame(@baseCtx)
-            setTimeout @snapshot(n+1, encoder), 0
-        else
-            setTimeout (=> @snapshot(n+1, encoder)), @spec.delay
-
-
+    evalAni: (n) ->
+        return if n>@spec.N-1
+        @spec.frame(n) # draw nth frame
+        setTimeout (=> @evalAni(n+1)), @spec.delay
