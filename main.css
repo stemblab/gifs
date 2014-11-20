@@ -17,8 +17,8 @@
  clear:both;
 }
 
-#gif {
-    border: 1px dashed;
+#results {
+   /* border: 1px dashed;*/
 }
 
 .foot .puzlet-link { float:left }
