@@ -81,4 +81,8 @@ new $blab.BasicGif(spec) if animate
  # To save your code:
  # Set makeGif=false above.
  # Click "Save" button at top to save as Gist.
+ # This will take you to the Gist page.
+ 
+ # You can make further edits to the Gist page
+ # and save them to the Gist.
 
