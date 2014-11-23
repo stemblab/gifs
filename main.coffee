@@ -28,7 +28,7 @@ fig = figure
  # 3. <a href="http://puzlet.org/sci-comp/utils/">Plot function.</a>
 
  # Sweep the function's parameters and plot
- # on right (to debug, not to animate.)
+ # on right (to debug, not to animate).
  # (shift+enter to execute)
      
 A = linspace -0.45, 0.45, 50 # Array of a.
@@ -46,23 +46,39 @@ plot x, y, fig: fig
  # delay between frames, and the total
  # number of frames.
 
+ # Set animate=true to see animation
+ # on the right (shift+enter to execute).
+
+animate = false  #;
+makeGif = false  #;
+
 spec =
     frame: (n) -> plot x, y[0..n], fig: fig
     delay: 100 # ms
     N: 50 # total frames
-    makeGif: false
+    makeGif: makeGif
 
- # Uncomment/de-indent to check animation
- # on the right (shift+enter to execute). 
- # new $blab.BasicGif spec # (<a href="http://puzlet.org/doc/anatomy/">$blab?</a>)
+new $blab.BasicGif(spec) if animate
+ #; <a href="http://puzlet.org/doc/anatomy/">What is $blab?</a>
 
  # 5. <u>Create GIF</u>
 
- # Change makeGif to true in spec above,
+ # Set makeGif=true above,
  # then run again (shift+enter).
 
- # Will take a while to generate, and block
- # this tab (to be fixed).
+ # Animated GIF and thumbnail will
+ # be displayed below.
+
+ # The GIF takes a while to generate,
+ # and will block this tab (to be fixed).
  # Persist if browser complains.
- # Right click to save the animated gif,
- # or the thumb.
+
+ # 6. <u>Save/share your work</u>
+
+ # Right-click animated GIF or thumbnail
+ # to save to disk.
+
+ # To save your code:
+ # Set makeGif=false above.
+ # Click "Save" button at top to save as Gist.
+
