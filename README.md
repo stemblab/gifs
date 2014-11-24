@@ -1,1 +1,1 @@
-![](https://github.com/stemblab/gifs/blob/gh-pages/thumb.png)
+![](https://github.com/stemblab/gifs/blob/gh-pages/thumb.gif)
